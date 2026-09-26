@@ -33,6 +33,7 @@ export type Project = {
   imageCaption: string;
   imageWidth: number;
   imageHeight: number;
+  imagePosition?: 'shift-left';
   metrics: Metric[];
   highlights: string[];
   role?: string;
@@ -309,6 +310,7 @@ export const projects: Project[] = [
     imageCaption: 'Current Woku website, captured in September 2026.',
     imageWidth: 1600,
     imageHeight: 900,
+    imagePosition: 'shift-left',
     metrics: [
       { value: '50+', label: 'customers' },
       { value: '3', label: 'countries: Chile, Peru, and Colombia' },
