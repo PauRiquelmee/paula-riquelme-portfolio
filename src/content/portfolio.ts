@@ -344,7 +344,7 @@ export const projects: Project[] = [
     slug: 'wondeya',
     role: 'Co-founder',
     name: 'Wondeya',
-    description: 'Conversational engine for grounded, adaptive web experiences',
+    description: 'Conversational landing pages',
     href: 'https://wondeya.com',
     image: '/media/wondeya-project.webp',
     imageAlt:
