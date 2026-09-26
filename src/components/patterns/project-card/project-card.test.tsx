@@ -11,7 +11,7 @@ describe('ProjectCard', () => {
     expect(screen.getByText('CEO & Co-founder / Product Lead')).toBeVisible();
     expect(screen.getByText('50+')).toBeVisible();
     expect(screen.getByAltText(/Woku website showing/i)).toHaveClass(
-      'object-[75%_center]',
+      'object-[100%_center]',
     );
     expect(
       screen.getByRole('link', { name: 'View case study: Woku' }),
