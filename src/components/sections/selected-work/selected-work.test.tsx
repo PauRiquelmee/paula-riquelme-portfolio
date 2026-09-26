@@ -33,11 +33,11 @@ describe('SelectedWork', () => {
       screen.getByRole('link', { name: 'View case study: Inpla' }),
     ).toHaveAttribute('href', '/work/inpla/');
     expect(
+      screen.getByRole('link', { name: 'View case study: Wondeya' }),
+    ).toHaveAttribute('href', '/work/wondeya/');
+    expect(
       screen.getByRole('link', { name: 'Visit website for Wondeya' }),
     ).toHaveAttribute('href', 'https://wondeya.com');
-    expect(
-      screen.queryByRole('link', { name: 'View case study: Wondeya' }),
-    ).not.toBeInTheDocument();
     expect(
       screen.queryByRole('link', { name: 'Visit website for Orvita' }),
     ).not.toBeInTheDocument();

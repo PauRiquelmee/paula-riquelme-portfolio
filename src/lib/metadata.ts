@@ -8,9 +8,15 @@ import {
 import { siteUrl } from '@/lib/paths';
 
 export const getProjectMetadata = (project: CaseStudyProject): Metadata => {
-  const projectExperience = getProjectExperience(project);
+  const projectExperience = project.experienceId
+    ? getProjectExperience({
+        name: project.name,
+        experienceId: project.experienceId,
+      })
+    : null;
+  const projectRole = project.role ?? projectExperience?.role;
   const title = `${project.name} case study | ${site.name}`;
-  const description = `${project.description}. ${profile.name}'s documented role: ${projectExperience.role}.`;
+  const description = `${project.description}. ${profile.name}'s documented role: ${projectRole}.`;
 
   return {
     title,

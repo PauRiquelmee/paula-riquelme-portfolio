@@ -65,7 +65,14 @@ describe('canonical portfolio content', () => {
     );
     expect(
       projects.find((project) => project.slug === 'wondeya'),
-    ).toMatchObject({ role: 'Co-founder' });
+    ).toMatchObject({
+      caseStudyPath: '/work/wondeya/',
+      role: 'Co-founder',
+      metrics: [
+        { value: '116', label: 'local responses measured' },
+        { value: '124/124', label: 'complete traces verified' },
+      ],
+    });
   });
 
   it('contains all skill groups and five El Mercurio Innovation features', () => {

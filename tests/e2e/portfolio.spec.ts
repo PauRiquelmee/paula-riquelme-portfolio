@@ -63,6 +63,7 @@ test('links project cards only to verified case studies and websites', async ({
 
   for (const [project, path, website] of [
     ['Woku', '/work/woku/', 'https://woku.app'],
+    ['Wondeya', '/work/wondeya/', 'https://wondeya.com'],
     ['Inpla', '/work/inpla/', 'https://inpla.ai/en/'],
   ] as const) {
     await expect(
@@ -76,14 +77,6 @@ test('links project cards only to verified case studies and websites', async ({
     await expect(externalLink).toHaveAttribute('rel', 'noreferrer noopener');
   }
 
-  const wondeyaLink = page.getByRole('link', {
-    name: 'Visit website for Wondeya',
-  });
-  await expect(wondeyaLink).toHaveAttribute('href', 'https://wondeya.com');
-  await expect(wondeyaLink).toHaveAttribute('target', '_blank');
-  await expect(
-    page.getByRole('link', { name: 'View case study: Wondeya' }),
-  ).toHaveCount(0);
   await expect(
     page.getByRole('link', { name: 'View case study: Orvita' }),
   ).toHaveCount(0);
@@ -93,9 +86,10 @@ test('links project cards only to verified case studies and websites', async ({
 });
 
 test('publishes complete canonical case study routes', async ({ page }) => {
-  for (const [path, project] of [
-    ['/work/woku/', 'Woku'],
-    ['/work/inpla/', 'Inpla'],
+  for (const [path, project, signalHeading] of [
+    ['/work/woku/', 'Woku', 'Customer and market signal'],
+    ['/work/wondeya/', 'Wondeya', 'Measured evidence'],
+    ['/work/inpla/', 'Inpla', 'Customer and market signal'],
   ] as const) {
     const response = await page.request.get(path);
     expect(response.status(), path).toBe(200);
@@ -109,7 +103,7 @@ test('publishes complete canonical case study routes', async ({ page }) => {
       'Context and problem',
       "Paula's role and responsibilities",
       'Constraints and initial conditions',
-      'Customer and market signal',
+      signalHeading,
       'Product and design decisions',
       'Implementation and delivery',
       'Outcomes and measurable evidence',
@@ -232,6 +226,7 @@ test('publishes substantive trust pages and lists them in the sitemap', async ({
   expect(sitemapText).toContain('https://pauriquelmee.github.io/contact/');
   expect(sitemapText).toContain('https://pauriquelmee.github.io/privacy/');
   expect(sitemapText).toContain('https://pauriquelmee.github.io/work/woku/');
+  expect(sitemapText).toContain('https://pauriquelmee.github.io/work/wondeya/');
   expect(sitemapText).toContain('https://pauriquelmee.github.io/work/inpla/');
 });
 

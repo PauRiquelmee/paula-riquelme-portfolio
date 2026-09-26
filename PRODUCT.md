@@ -32,7 +32,7 @@ Visitors arrive from professional referrals, LinkedIn, press coverage, or direct
 - A custom recoverable 404, `llms.txt`, a sitemap, and canonical Markdown documents for agent access.
 - No backend, API routes, database, contact form, multilingual routes, or language selector.
 - Static export compatible with the GitHub Pages user-site root.
-- Woku and Inpla use factual local screenshots, dedicated static case studies, and safe external website links. Wondeya uses a factual local screenshot with its safe external website link, while Orvita uses supplied historical media without an unverified external destination. The site does not describe static media as a live preview.
+- Woku, Wondeya, and Inpla use factual local screenshots, dedicated static case studies, and safe external website links. Orvita uses supplied historical media without an unverified external destination. The site does not describe static media as a live preview.
 - Base UI owns relevant interactive primitives and focus management.
 - Motion owns meaningful animation and respects the user's reduced-motion preference.
 - Source architecture enforces one named component per production TSX file, folder-boundary imports, colocated tests, and default exports from component folders while allowing idiomatic JSX in callbacks and conditions.
