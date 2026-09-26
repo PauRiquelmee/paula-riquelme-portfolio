@@ -42,7 +42,7 @@ Do not use it as evidence for customers, funding, revenue, testimonials, respons
 
 - [Woku case study](https://pauriquelmee.github.io/work/woku/): AI-powered customer-feedback platform.
 - [Woku website](https://woku.app): Current public product website.
-- Wondeya: Conversational engine for grounded, adaptive web experiences.
+- Wondeya: Conversational landing pages.
 - [Wondeya website](https://wondeya.com): Current public product website.
 - [Inpla case study](https://pauriquelmee.github.io/work/inpla/): Platform for chatting with company data.
 - [Inpla website](https://inpla.ai/en/): Current public product website.
