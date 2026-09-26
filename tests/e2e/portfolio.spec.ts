@@ -55,7 +55,7 @@ test('supports accessible mobile navigation', async ({ page }) => {
   await expect(trigger).toBeFocused();
 });
 
-test('links project cards to factual case studies and websites', async ({
+test('links project cards only to verified case studies and websites', async ({
   page,
 }) => {
   await expect(page.getByText(/Live preview/i)).toHaveCount(0);
@@ -75,6 +75,21 @@ test('links project cards to factual case studies and websites', async ({
     await expect(externalLink).toHaveAttribute('target', '_blank');
     await expect(externalLink).toHaveAttribute('rel', 'noreferrer noopener');
   }
+
+  const wondeyaLink = page.getByRole('link', {
+    name: 'Visit website for Wondeya',
+  });
+  await expect(wondeyaLink).toHaveAttribute('href', 'https://wondeya.com');
+  await expect(wondeyaLink).toHaveAttribute('target', '_blank');
+  await expect(
+    page.getByRole('link', { name: 'View case study: Wondeya' }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole('link', { name: 'View case study: Orvita' }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole('link', { name: 'Visit website for Orvita' }),
+  ).toHaveCount(0);
 });
 
 test('publishes complete canonical case study routes', async ({ page }) => {
@@ -151,6 +166,15 @@ test('serves the resume and static media from the production root', async ({
     expect(new URL(assetUrl).pathname).toMatch(/^\//);
     const response = await page.request.get(assetUrl);
     expect(response.status(), assetUrl).toBe(200);
+  }
+
+  for (const assetPath of [
+    '/media/woku-project.webp',
+    '/media/wondeya-project.webp',
+    '/media/orvita.a.gif',
+  ]) {
+    const response = await page.request.get(assetPath);
+    expect(response.status(), assetPath).toBe(200);
   }
 
   const resumeResponse = await page.request.get(
@@ -384,14 +408,20 @@ test('keeps desktop metrics aligned, on one line, and actions square', async ({
 
   expect(lineCount).toBe(1);
 
-  const metricValueTops = await page
-    .locator('.project-metrics dd')
+  const metricValueTopGroups = await page
+    .locator('.project-metrics')
     .evaluateAll((elements) =>
-      elements.map((element) => element.getBoundingClientRect().top),
+      elements.map((element) =>
+        [...element.querySelectorAll('dd')].map(
+          (metric) => metric.getBoundingClientRect().top,
+        ),
+      ),
     );
-  expect(
-    Math.max(...metricValueTops) - Math.min(...metricValueTops),
-  ).toBeLessThanOrEqual(1);
+  for (const metricValueTops of metricValueTopGroups) {
+    expect(
+      Math.max(...metricValueTops) - Math.min(...metricValueTops),
+    ).toBeLessThanOrEqual(1);
+  }
 
   await expect(
     page.getByRole('link', { name: 'View selected work' }),

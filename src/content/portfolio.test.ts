@@ -26,15 +26,24 @@ describe('canonical portfolio content', () => {
   });
 
   it('preserves the selected-work outcomes', () => {
+    expect(projects.map((project) => project.slug)).toEqual([
+      'woku',
+      'wondeya',
+      'inpla',
+      'orvita',
+    ]);
     expect(projects[0].metrics.map((metric) => metric.value)).toEqual([
       '50+',
       '3',
       'USD 70K',
     ]);
     expect(
-      getProjectExperience(projects[1]).responsibilities.join(' '),
+      getProjectExperience({
+        name: projects[2].name,
+        experienceId: 'inpla',
+      }).responsibilities.join(' '),
     ).toContain('Puerto Coronel');
-    expect(projects[1]).toMatchObject({
+    expect(projects[2]).toMatchObject({
       slug: 'inpla',
       caseStudyPath: '/work/inpla/',
       href: 'https://inpla.ai/en/',
@@ -43,6 +52,15 @@ describe('canonical portfolio content', () => {
     expect(projects.every((project) => 'previewStatus' in project)).toBe(false);
     expect(projects.every((project) => 'previewMessage' in project)).toBe(
       false,
+    );
+    expect(projects.find((project) => project.slug === 'orvita')).toMatchObject(
+      {
+        image: '/media/orvita.a.gif',
+        metrics: [
+          { value: 'USD 7K', label: 'non-dilutive ICHIO funding' },
+          { value: 'OPTIMA 2017', label: 'Best Undergraduate Paper' },
+        ],
+      },
     );
   });
 

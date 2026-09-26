@@ -1,8 +1,8 @@
 import CaseStudyPage from '@/components/patterns/case-study-page';
-import { projects } from '@/content/portfolio';
+import { getCaseStudyProject } from '@/content/portfolio';
 import { getProjectMetadata } from '@/lib/metadata';
 
-const project = projects.find((item) => item.slug === 'woku')!;
+const project = getCaseStudyProject('woku');
 
 export const metadata = getProjectMetadata(project);
 

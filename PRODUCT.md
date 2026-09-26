@@ -24,7 +24,7 @@ Paula bridges customer discovery, product strategy, product design, go-to-market
 
 ## Operating Context
 
-Visitors arrive from professional referrals, LinkedIn, press coverage, or direct outreach. They evaluate the site on desktop and mobile, scan evidence quickly, may open Woku and Inpla, and may download a resume for later review.
+Visitors arrive from professional referrals, LinkedIn, press coverage, or direct outreach. They evaluate the site on desktop and mobile, scan evidence quickly, may inspect Woku, Wondeya, Inpla, and Orvita, and may download a resume for later review.
 
 ## Capabilities and Constraints
 
@@ -32,7 +32,7 @@ Visitors arrive from professional referrals, LinkedIn, press coverage, or direct
 - A custom recoverable 404, `llms.txt`, a sitemap, and canonical Markdown documents for agent access.
 - No backend, API routes, database, contact form, multilingual routes, or language selector.
 - Static export compatible with the GitHub Pages user-site root.
-- Woku and Inpla use factual local screenshots, dedicated static case studies, and safe external website links. The site does not describe static media as a live preview.
+- Woku and Inpla use factual local screenshots, dedicated static case studies, and safe external website links. Wondeya uses a factual local screenshot with its safe external website link, while Orvita uses supplied historical media without an unverified external destination. The site does not describe static media as a live preview.
 - Base UI owns relevant interactive primitives and focus management.
 - Motion owns meaningful animation and respects the user's reduced-motion preference.
 - Source architecture enforces one named component per production TSX file, folder-boundary imports, colocated tests, and default exports from component folders while allowing idiomatic JSX in callbacks and conditions.
@@ -53,7 +53,7 @@ Visitors arrive from professional referrals, LinkedIn, press coverage, or direct
 - Canonical English resume and implementation brief: `../prompt.md` outside the repository.
 - Press images supplied by the user: `../woku.png`, `../inpla.png`, `../verano1.png`, `../verano2.png`, `../fracaso.png`, `../madeinnconce.png`, and `../optima2017.jpeg` outside the repository.
 - Verified public links in the brief for LinkedIn, Woku, Inpla, `(defi)2`, Diario Concepcion, and five El Mercurio Innovation posts.
-- No personal photograph or separate project product screenshots were supplied. Project presentation may use optimized crops of the supplied Woku and Inpla media as factual local imagery.
+- No personal photograph was supplied. Project presentation may use optimized captures of the current Woku and Wondeya websites, supplied Inpla media, and the supplied historical Orvita GIF as factual local imagery.
 - No testimonials, extra customer names, revenue claims, prices, or benchmarks may be invented.
 
 ## Product Principles

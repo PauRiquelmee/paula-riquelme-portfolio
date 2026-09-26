@@ -24,14 +24,14 @@
 
 This repository contains Paula Riquelme's English-only professional portfolio. It presents her work across customer discovery, product strategy, UX/UI, go-to-market execution, and frontend implementation through selected projects, measurable outcomes, professional experience, recognition, and press evidence.
 
-The experience is designed as a product launch dossier, not a generic personal profile. Visitors can understand Paula's range quickly, inspect factual Woku and Inpla case studies, download the English resume, and start a conversation from a fast, accessible static site. Dedicated About, Contact, and Privacy pages provide stable trust anchors for people and agents.
+The experience is designed as a product launch dossier, not a generic personal profile. Visitors can understand Paula's range quickly, inspect selected work across Woku, Wondeya, Inpla, and Orvita, open factual Woku and Inpla case studies, download the English resume, and start a conversation from a fast, accessible static site. Dedicated About, Contact, and Privacy pages provide stable trust anchors for people and agents.
 
 ## Product principles
 
 - **Evidence before biography:** selected work and verified outcomes lead the story.
 - **One source of truth:** portfolio facts live in [`src/content/portfolio.ts`](src/content/portfolio.ts) and are protected by tests.
 - **Static by default:** meaningful content, project evidence, and case studies render to HTML at build time, while JavaScript is reserved for navigation and purposeful motion.
-- **Honest project access:** every project card links to a factual case study and the external product website without presenting a screenshot as a live preview.
+- **Honest project access:** Woku and Inpla link to factual case studies and their external product websites, while other selected work exposes only the verified actions available without presenting static media as a live preview.
 - **Accessible interaction:** semantic landmarks, keyboard navigation, focus restoration, reduced-motion support, visible focus states, and 44 px touch targets are part of the implementation contract.
 
 ## Architecture

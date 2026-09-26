@@ -11,8 +11,8 @@ const SelectedWork = () => {
       <div className="section-heading section-heading-row">
         <h2 id="work-title">Selected work</h2>
         <p>
-          Two ventures, from first customer signal to scaled feedback
-          infrastructure.
+          Four ventures across customer feedback, conversational web
+          experiences, company data, and tourism.
         </p>
       </div>
       <div className="project-grid grid gap-px border border-ink bg-ink md:grid-cols-2">

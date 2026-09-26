@@ -109,10 +109,20 @@ await writeFile(
 
 const imageJobs = [
   {
-    input: 'woku-site.png',
+    input: 'woku-site-current.png',
     output: 'woku-project.webp',
     transform: (image) =>
-      image.resize(1600, 900, { fit: 'cover', position: 'top' }),
+      image
+        .extract({ left: 0, top: 0, width: 1600, height: 680 })
+        .resize(1600, 900, { fit: 'cover', position: 'left top' }),
+  },
+  {
+    input: 'wondeya-site-current.png',
+    output: 'wondeya-project.webp',
+    transform: (image) =>
+      image
+        .extract({ left: 0, top: 0, width: 1600, height: 680 })
+        .resize(1600, 900, { fit: 'cover', position: 'top' }),
   },
   {
     input: 'woku.png',
@@ -401,7 +411,10 @@ y = drawWrapped(page, `Portfolio: ${resume.links.portfolio}`, {
 y =
   drawWrapped(
     page,
-    `${resume.projects.map((project) => `${project.name}: ${project.href}`).join('  |  ')}  |  Methodology: ${resume.links.methodology}`,
+    `${resume.projects
+      .filter((project) => project.href)
+      .map((project) => `${project.name}: ${project.href}`)
+      .join('  |  ')}  |  Methodology: ${resume.links.methodology}`,
     { y: y - 2, size: 8.5, lineHeight: 11 },
   ) - 10;
 y = drawSectionTitle(page, 'Languages', y);
