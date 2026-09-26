@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import {
   getProjectExperience,
   profile,
-  type Project,
+  type CaseStudyProject,
   site,
 } from '@/content/portfolio';
 import { siteUrl } from '@/lib/paths';
 
-export const getProjectMetadata = (project: Project): Metadata => {
+export const getProjectMetadata = (project: CaseStudyProject): Metadata => {
   const projectExperience = getProjectExperience(project);
   const title = `${project.name} case study | ${site.name}`;
   const description = `${project.description}. ${profile.name}'s documented role: ${projectExperience.role}.`;

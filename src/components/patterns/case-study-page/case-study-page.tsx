@@ -4,13 +4,13 @@ import {
   getProjectExperience,
   pressFeatures,
   profile,
-  type Project,
+  type CaseStudyProject,
   site,
 } from '@/content/portfolio';
 import { siteUrl, withBasePath } from '@/lib/paths';
 
 export type CaseStudyPageProps = {
-  project: Project;
+  project: CaseStudyProject;
 };
 
 const sectionClassName =

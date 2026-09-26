@@ -10,29 +10,38 @@ export type Metric = {
   label: string;
 };
 
+export type ProjectCaseStudy = {
+  context: string[];
+  constraints: string[];
+  decisionResponsibilityIndexes: number[];
+  deliveryResponsibilityIndexes: number[];
+  outcomeResponsibilityIndexes: number[];
+  pressFeatureIndexes: number[];
+  reflection: string[];
+  factualBoundary: string;
+};
+
 export type Project = {
-  slug: 'woku' | 'inpla';
-  caseStudyPath: `/work/${string}/`;
-  experienceId: 'woku' | 'inpla';
+  slug: 'woku' | 'wondeya' | 'inpla' | 'orvita';
+  caseStudyPath?: `/work/${string}/`;
+  experienceId?: 'woku' | 'inpla' | 'orvita';
   name: string;
   description: string;
-  href: string;
+  href?: string;
   image: string;
   imageAlt: string;
   imageCaption: string;
   imageWidth: number;
   imageHeight: number;
   metrics: Metric[];
-  caseStudy: {
-    context: string[];
-    constraints: string[];
-    decisionResponsibilityIndexes: number[];
-    deliveryResponsibilityIndexes: number[];
-    outcomeResponsibilityIndexes: number[];
-    pressFeatureIndexes: number[];
-    reflection: string[];
-    factualBoundary: string;
-  };
+  highlights: string[];
+  caseStudy?: ProjectCaseStudy;
+};
+
+export type CaseStudyProject = Project & {
+  caseStudyPath: `/work/${string}/`;
+  experienceId: 'woku' | 'inpla';
+  caseStudy: ProjectCaseStudy;
 };
 
 export type ExperienceItem = {
@@ -295,15 +304,19 @@ export const projects: Project[] = [
     description: 'AI-powered customer-feedback platform',
     href: 'https://woku.app',
     image: '/media/woku-project.webp',
-    imageAlt:
-      'Woku website showing its customer-feedback proposition and an audio feedback interface.',
-    imageCaption: 'Current Woku website, captured in English in August 2026.',
+    imageAlt: 'Woku website showing its customer-retention proposition.',
+    imageCaption: 'Current Woku website, captured in September 2026.',
     imageWidth: 1600,
     imageHeight: 900,
     metrics: [
       { value: '50+', label: 'customers' },
       { value: '3', label: 'countries: Chile, Peru, and Colombia' },
       { value: 'USD 70K', label: 'non-dilutive CORFO funding' },
+    ],
+    highlights: [
+      'Leads end-to-end strategy and execution for an AI-powered customer feedback platform, from discovery and workflow design through frontend implementation and launch.',
+      'Translates customer needs into features for rapid feedback capture, NPS and forms, AI-assisted analysis, alerts, and WhatsApp and API integrations.',
+      'Connects product, UX/UI, growth, sales, and implementation to keep the roadmap aligned with business outcomes and real customer workflows.',
     ],
     caseStudy: {
       context: [
@@ -327,6 +340,24 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'wondeya',
+    name: 'Wondeya',
+    description: 'Conversational landing pages for SaaS and service teams',
+    href: 'https://wondeya.com',
+    image: '/media/wondeya-project.webp',
+    imageAlt:
+      'Wondeya landing page showing its conversational assistant for visitor questions.',
+    imageCaption: 'Current Wondeya landing page, captured in September 2026.',
+    imageWidth: 1600,
+    imageHeight: 900,
+    metrics: [],
+    highlights: [
+      'Turns a landing page into an assistant that guides each visitor toward booking, a quote, or purchase.',
+      'Answers visitor questions with AI using the business information it has been given.',
+      'Built for SaaS and service founders and marketing teams.',
+    ],
+  },
+  {
     slug: 'inpla',
     caseStudyPath: '/work/inpla/',
     experienceId: 'inpla',
@@ -343,6 +374,11 @@ export const projects: Project[] = [
     metrics: [
       { value: '01', label: 'first customer: Puerto Coronel' },
       { value: 'Pre-product', label: 'commercial validation' },
+    ],
+    highlights: [
+      'Won the first customer, Puerto Coronel, before a product existed by selling the vision alone.',
+      'Co-created the product, user experience, brand, and positioning.',
+      'Helped shape a platform that allows companies to chat with their data.',
     ],
     caseStudy: {
       context: [
@@ -364,6 +400,27 @@ export const projects: Project[] = [
       factualBoundary:
         "This case study names Paula's documented contributions and lists the company outcome separately. It does not infer undisclosed customer research, technical ownership, revenue, adoption, or sole ownership of team results.",
     },
+  },
+  {
+    slug: 'orvita',
+    experienceId: 'orvita',
+    name: 'Orvita',
+    description: 'Digital tourism venture for personalized route planning',
+    image: '/media/orvita.a.gif',
+    imageAlt:
+      'Orvita digital tourism venture interface with a route search field and city map.',
+    imageCaption: 'Orvita digital tourism venture interface.',
+    imageWidth: 1024,
+    imageHeight: 768,
+    metrics: [
+      { value: 'USD 7K', label: 'non-dilutive ICHIO funding' },
+      { value: 'OPTIMA 2017', label: 'Best Undergraduate Paper' },
+    ],
+    highlights: [
+      'Received USD 7,000 in non-dilutive funding from the Chilean Institute for Operations Research, ICHIO.',
+      'Earned the Best Undergraduate Paper recognition at the OPTIMA 2017 Congress.',
+      'Led strategy and product development for a digital tourism venture.',
+    ],
   },
 ];
 
@@ -450,11 +507,24 @@ export const experience: ExperienceItem[] = [
   },
 ];
 
-export const getProjectExperience = (project: Project) => {
+export const getProjectExperience = (project: {
+  name: string;
+  experienceId: ExperienceItem['id'];
+}) => {
   const record = experience.find((item) => item.id === project.experienceId);
   if (!record)
     throw new Error(`Missing experience record for ${project.name}.`);
   return record;
+};
+
+export const getCaseStudyProject = (
+  slug: CaseStudyProject['slug'],
+): CaseStudyProject => {
+  const project = projects.find((item) => item.slug === slug);
+  if (!project?.caseStudyPath || !project.experienceId || !project.caseStudy) {
+    throw new Error(`Missing case study for ${slug}.`);
+  }
+  return project as CaseStudyProject;
 };
 
 export const skillGroups: SkillGroup[] = [

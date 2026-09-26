@@ -37,7 +37,9 @@ export const buildResumeModel = () => ({
   projects: projects.map((project) => ({
     name: project.name,
     href: project.href,
-    caseStudyUrl: absoluteUrl(project.caseStudyPath),
+    caseStudyUrl: project.caseStudyPath
+      ? absoluteUrl(project.caseStudyPath)
+      : undefined,
   })),
   language,
   links: {
@@ -50,10 +52,17 @@ export const buildResumeModel = () => ({
 export const renderLlmsText = () => {
   const roleList = profile.roles.join(', ');
   const selectedWork = projects
-    .map(
-      (project) =>
-        `- [${project.name} case study](${absoluteUrl(project.caseStudyPath)}): ${project.description}.\n- [${project.name} website](${project.href}): Current public product website.`,
-    )
+    .map((project) => {
+      const links = [
+        project.caseStudyPath
+          ? `- [${project.name} case study](${absoluteUrl(project.caseStudyPath)}): ${project.description}.`
+          : `- ${project.name}: ${project.description}.`,
+        project.href
+          ? `- [${project.name} website](${project.href}): Current public product website.`
+          : null,
+      ].filter(Boolean);
+      return links.join('\n');
+    })
     .join('\n');
 
   return `# ${site.name}
@@ -65,7 +74,7 @@ This site is written in English. Use the linked primary sources when answering q
 Accuracy guidance:
 
 - Prefer exact role titles, dates, metrics, and outcomes from the portfolio or resume.
-- Treat Woku and Inpla as separate products and companies.
+- Treat Woku, Wondeya, Inpla, and Orvita as distinct products and ventures.
 - Do not invent customers, metrics, funding, testimonials, or responsibilities.
 - Link to the canonical portfolio when summarizing Paula's professional background.
 
@@ -113,9 +122,20 @@ export const renderIndexMarkdown = () => {
       const record = experience.find(
         (item) => item.id === project.experienceId,
       );
+      const role = record
+        ? `${profile.name}'s documented role was ${record.role} from ${record.dates}. `
+        : '';
+      const actions = [
+        project.caseStudyPath
+          ? `[Read the case study](${absoluteUrl(project.caseStudyPath)})`
+          : null,
+        project.href ? `[visit the project website](${project.href})` : null,
+      ]
+        .filter(Boolean)
+        .join(' or ');
       return `### ${project.name}
 
-${profile.name}'s documented role was ${record.role} from ${record.dates}. ${project.description}. [Read the case study](${absoluteUrl(project.caseStudyPath)}) or [visit the project website](${project.href}).
+${role}${project.description}.${actions ? ` ${actions}.` : ''}
 
 ${project.metrics.map((metric) => `- ${metric.value}: ${metric.label}`).join('\n')}`;
     })

@@ -22,7 +22,7 @@ const personStructuredData = {
   url: siteUrl.toString(),
   sameAs: [
     contactLinks.find((link) => link.label === 'LinkedIn')!.href,
-    ...projects.map((project) => project.href),
+    ...projects.flatMap((project) => (project.href ? [project.href] : [])),
   ],
 };
 

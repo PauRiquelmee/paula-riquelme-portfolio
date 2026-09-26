@@ -14,12 +14,25 @@ Paula Riquelme's documented role was CEO & Co-founder / Product Lead from Septem
 - 3: countries: Chile, Peru, and Colombia
 - USD 70K: non-dilutive CORFO funding
 
+### Wondeya
+
+Conversational landing pages for SaaS and service teams. [visit the project website](https://wondeya.com).
+
+
+
 ### Inpla
 
 Paula Riquelme's documented role was Co-founder & Brand Artisan, Product Design from May 2025 - January 2026. Platform for chatting with company data. [Read the case study](https://pauriquelmee.github.io/work/inpla/) or [visit the project website](https://inpla.ai/en/).
 
 - 01: first customer: Puerto Coronel
 - Pre-product: commercial validation
+
+### Orvita
+
+Paula Riquelme's documented role was CEO from 2018 - 2019. Digital tourism venture for personalized route planning.
+
+- USD 7K: non-dilutive ICHIO funding
+- OPTIMA 2017: Best Undergraduate Paper
 
 ## Professional chronology
 

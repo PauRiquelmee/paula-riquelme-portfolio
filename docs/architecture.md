@@ -2,7 +2,7 @@
 
 ## Project constraints
 
-This repository produces an English-only portfolio for Paula Riquelme. The primary experience lives at `/`, supported by Woku and Inpla case studies plus focused About, Contact, and Privacy trust pages. The site must export to static files, run at the root of Paula's GitHub Pages user site, avoid server-only features, minimize browser JavaScript, and preserve the canonical professional facts in `src/content`.
+This repository produces an English-only portfolio for Paula Riquelme. The primary experience lives at `/`, with selected work spanning Woku, Wondeya, Inpla, and Orvita; Woku and Inpla have dedicated case studies, while About, Contact, and Privacy provide focused trust pages. The site must export to static files, run at the root of Paula's GitHub Pages user site, avoid server-only features, minimize browser JavaScript, and preserve the canonical professional facts in `src/content`.
 
 The implementation uses strict TypeScript, Tailwind CSS, Base UI, Motion for React, Vitest, React Testing Library, user-event, jest-dom, and Playwright. It does not use another foundational component library, animation library, backend, API route, database, or multilingual routing.
 

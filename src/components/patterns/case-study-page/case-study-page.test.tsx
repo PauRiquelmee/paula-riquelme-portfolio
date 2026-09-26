@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { projects } from '@/content/portfolio';
+import { getCaseStudyProject } from '@/content/portfolio';
 import CaseStudyPage from '.';
 
 describe('CaseStudyPage', () => {
   it('renders canonical evidence and separates internal from external actions', () => {
-    render(<CaseStudyPage project={projects[0]} />);
+    render(<CaseStudyPage project={getCaseStudyProject('woku')} />);
 
     expect(screen.getByRole('main')).toHaveAccessibleName('Woku');
     expect(screen.getByText('50+')).toBeVisible();
@@ -20,7 +20,9 @@ describe('CaseStudyPage', () => {
   });
 
   it('matches the desktop metric grid to the available evidence', () => {
-    const { container } = render(<CaseStudyPage project={projects[1]} />);
+    const { container } = render(
+      <CaseStudyPage project={getCaseStudyProject('inpla')} />,
+    );
 
     expect(container.querySelector('.case-study-metrics')).toHaveClass(
       'lg:grid-cols-2',
@@ -28,13 +30,14 @@ describe('CaseStudyPage', () => {
   });
 
   it('states the project description once in the overview', () => {
-    render(<CaseStudyPage project={projects[0]} />);
+    const project = getCaseStudyProject('woku');
+    render(<CaseStudyPage project={project} />);
 
     expect(
       screen.getAllByText((_, element) =>
         Boolean(
           element?.tagName === 'P' &&
-          element.textContent?.startsWith(projects[0].description),
+          element.textContent?.startsWith(project.description),
         ),
       ),
     ).toHaveLength(1);
