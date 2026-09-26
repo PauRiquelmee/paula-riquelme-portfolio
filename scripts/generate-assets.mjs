@@ -202,7 +202,7 @@ pdf.catalog.set(PDFName.of('Lang'), PDFString.of('en-US'));
 const regularFont = await pdf.embedFont(StandardFonts.Helvetica);
 const boldFont = await pdf.embedFont(StandardFonts.HelveticaBold);
 const pageSize = [595.28, 841.89];
-const margin = 44;
+const margin = 36;
 const contentWidth = pageSize[0] - margin * 2;
 
 const wrapText = (text, font, size, maxWidth) => {
@@ -252,9 +252,9 @@ const drawWrapped = (page, text, options) => {
   return y - lines.length * lineHeight;
 };
 
-const drawSectionTitle = (page, title, y) => {
+const drawSectionTitle = (page, title, y, x = margin) => {
   page.drawText(title.toUpperCase(), {
-    x: margin,
+    x,
     y,
     size: 8,
     font: boldFont,
@@ -264,60 +264,57 @@ const drawSectionTitle = (page, title, y) => {
   return y - 17;
 };
 
-const drawRole = (page, role, company, dates, location, bullets, y) => {
+const drawRole = (
+  page,
+  role,
+  company,
+  dates,
+  location,
+  bullets,
+  y,
+  options = {},
+) => {
+  const { x = margin, maxWidth = contentWidth } = options;
   y = drawWrapped(page, `${role} | ${company}`, {
+    x,
     y,
-    size: 11,
+    size: 8.8,
     font: boldFont,
-    lineHeight: 13,
+    lineHeight: 10.5,
+    maxWidth,
   });
   y = drawWrapped(page, location ? `${dates} | ${location}` : dates, {
+    x,
     y: y + 1,
-    size: 8.3,
+    size: 7.1,
     color: rgb(0.4, 0.39, 0.36),
-    lineHeight: 11,
+    lineHeight: 8.7,
+    maxWidth,
   });
   for (const bullet of bullets) {
     y = drawWrapped(page, `• ${bullet}`, {
-      x: margin + 8,
+      x: x + 6,
       y: y - 1,
-      size: 8.4,
-      lineHeight: 10.8,
-      maxWidth: contentWidth - 8,
+      size: 7.25,
+      lineHeight: 8.8,
+      maxWidth: maxWidth - 6,
     });
   }
-  return y - 8;
-};
-
-const drawDocumentHeader = (page, subtitle, nameSize = 18) => {
-  page.drawText(resume.name.toUpperCase(), {
-    x: margin,
-    y: 770,
-    size: nameSize,
-    font: boldFont,
-    color: rgb(0.07, 0.07, 0.06),
-  });
-  page.drawText(subtitle.toUpperCase(), {
-    x: margin,
-    y: 748,
-    size: 9.5,
-    font: boldFont,
-    color: rgb(0.26, 0.22, 0.66),
-  });
+  return y - 6;
 };
 
 let page = createPage();
 page.drawText(resume.name.toUpperCase(), {
   x: margin,
-  y: 770,
-  size: 27,
+  y: 778,
+  size: 23,
   font: boldFont,
   color: rgb(0.07, 0.07, 0.06),
 });
 page.drawText(resume.roles.join(' · ').toUpperCase(), {
   x: margin,
-  y: 746,
-  size: 10.5,
+  y: 756,
+  size: 8.8,
   font: boldFont,
   color: rgb(0.26, 0.22, 0.66),
 });
@@ -325,28 +322,28 @@ page.drawText(
   `${resume.location}  |  ${resume.email}  |  linkedin.com/in/pauriquelme`,
   {
     x: margin,
-    y: 727,
-    size: 8.3,
+    y: 740,
+    size: 7.3,
     font: regularFont,
     color: rgb(0.4, 0.39, 0.36),
   },
 );
 
-let y = drawSectionTitle(page, 'Profile', 697);
-y = drawWrapped(page, resume.summary, { y, size: 9.1, lineHeight: 12.3 }) - 10;
+let y = drawSectionTitle(page, 'Profile', 715);
+y = drawWrapped(page, resume.summary, { y, size: 7.75, lineHeight: 9.5 }) - 7;
 
 y = drawSectionTitle(page, 'Core skills', y);
 for (const group of resume.skills) {
   y = drawWrapped(page, `${group.name}: ${group.items.join(', ')}.`, {
     y: y - 2,
-    size: 8.6,
-    lineHeight: 11.3,
+    size: 7.15,
+    lineHeight: 8.8,
   });
 }
-y -= 10;
+y -= 7;
 
-y = drawSectionTitle(page, 'Selected experience', y);
-for (const item of resume.experience.slice(0, 2)) {
+y = drawSectionTitle(page, 'Experience', y);
+for (const item of resume.experience) {
   y = drawRole(
     page,
     item.role,
@@ -358,55 +355,49 @@ for (const item of resume.experience.slice(0, 2)) {
   );
 }
 
-page = createPage();
-drawDocumentHeader(page, 'Experience, education and evidence');
-y = 714;
-for (const item of resume.experience.slice(2)) {
-  y = drawRole(
-    page,
-    item.role,
-    item.company,
-    item.dates,
-    item.location,
-    item.responsibilities,
-    y,
-  );
-}
 y = drawSectionTitle(page, 'Education', y);
 for (const item of resume.education) {
   y = drawWrapped(page, `${item.degree} | ${item.institution}, ${item.year}`, {
-    y: y - 3,
-    size: 9.2,
+    y: y - 2,
+    size: 7.25,
     font: boldFont,
-    lineHeight: 12,
+    lineHeight: 8.8,
   });
 }
 
-y -= 16;
+y -= 5;
 y = drawSectionTitle(page, 'Recognition', y);
 y = drawWrapped(page, resume.recognition.title, {
   y,
-  size: 10.5,
+  size: 7.5,
   font: boldFont,
-  lineHeight: 13,
+  lineHeight: 9,
 });
 y =
   drawWrapped(
     page,
     `${resume.recognition.description} ${resume.recognition.outcome}`,
-    { y: y - 1, size: 8.7, lineHeight: 11.5 },
-  ) - 10;
+    {
+      y: y - 1,
+      size: 7.1,
+      lineHeight: 8.7,
+    },
+  ) - 5;
 y = drawSectionTitle(page, 'Press', y);
 y = drawWrapped(
   page,
   `${resume.pressFeatures.length} El Mercurio Innovation features: ${resume.pressFeatures.map((feature) => feature.title).join('; ')}.`,
-  { y, size: 8.7, lineHeight: 11.5 },
+  {
+    y,
+    size: 7.1,
+    lineHeight: 8.7,
+  },
 );
 y = drawWrapped(page, `Portfolio: ${resume.links.portfolio}`, {
-  y: y - 5,
-  size: 8.5,
+  y: y - 3,
+  size: 7.1,
   font: boldFont,
-  lineHeight: 11,
+  lineHeight: 8.7,
 });
 y =
   drawWrapped(
@@ -415,13 +406,17 @@ y =
       .filter((project) => project.href)
       .map((project) => `${project.name}: ${project.href}`)
       .join('  |  ')}  |  Methodology: ${resume.links.methodology}`,
-    { y: y - 2, size: 8.5, lineHeight: 11 },
-  ) - 10;
+    {
+      y: y - 2,
+      size: 7.1,
+      lineHeight: 8.7,
+    },
+  ) - 5;
 y = drawSectionTitle(page, 'Languages', y);
 drawWrapped(page, resume.language, {
   y,
-  size: 8.8,
-  lineHeight: 11,
+  size: 7.1,
+  lineHeight: 8.7,
 });
 
 for (const [index, resumePage] of pdf.getPages().entries()) {

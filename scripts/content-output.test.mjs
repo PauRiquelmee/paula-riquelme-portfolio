@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import { PDFDocument } from 'pdf-lib';
 import { describe, expect, it } from 'vitest';
 import {
   experience,
@@ -46,5 +47,24 @@ describe('generated portfolio content', () => {
     expect(resume.projects.map((project) => project.href)).toEqual(
       projects.map((project) => project.href),
     );
+  });
+
+  it('publishes the English resume as a single-page PDF', async () => {
+    const pdf = await PDFDocument.load(
+      new Uint8Array(
+        await readFile('public/documents/paula-riquelme-resume-en.pdf'),
+      ),
+    );
+
+    expect(pdf.getPageCount()).toBe(1);
+  });
+
+  it('keeps the English resume in a single-column reading order', async () => {
+    const assetGenerator = await readFile(
+      'scripts/generate-assets.mjs',
+      'utf8',
+    );
+
+    expect(assetGenerator).not.toContain('Additional experience');
   });
 });
