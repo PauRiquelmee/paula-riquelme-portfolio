@@ -92,6 +92,13 @@ describe('canonical portfolio content', () => {
     expect(contactLinks.find((link) => link.label === 'Inpla')?.href).toBe(
       'https://inpla.ai/en/',
     );
+    expect(contactLinks.find((link) => link.label === 'Wondeya')).toMatchObject(
+      {
+        href: 'https://wondeya.com',
+        external: true,
+        ariaLabel: 'Open Wondeya in a new tab',
+      },
+    );
     expect(contactLinks.find((link) => link.label === 'llms.txt')?.href).toBe(
       '/llms.txt',
     );
