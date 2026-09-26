@@ -16,7 +16,7 @@ Paula Riquelme's documented role was CEO & Co-founder / Product Lead from Septem
 
 ### Wondeya
 
-Paula Riquelme's documented role: Co-founder. Conversational landing pages for SaaS and service teams. [visit the project website](https://wondeya.com).
+Paula Riquelme's documented role: Co-founder. Conversational engine for grounded, adaptive web experiences. [visit the project website](https://wondeya.com).
 
 
 

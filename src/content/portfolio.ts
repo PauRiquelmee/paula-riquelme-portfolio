@@ -344,7 +344,7 @@ export const projects: Project[] = [
     slug: 'wondeya',
     role: 'Co-founder',
     name: 'Wondeya',
-    description: 'Conversational landing pages for SaaS and service teams',
+    description: 'Conversational engine for grounded, adaptive web experiences',
     href: 'https://wondeya.com',
     image: '/media/wondeya-project.webp',
     imageAlt:
@@ -354,9 +354,9 @@ export const projects: Project[] = [
     imageHeight: 900,
     metrics: [],
     highlights: [
-      'Turns a landing page into an assistant that guides each visitor toward booking, a quote, or purchase.',
-      'Answers visitor questions with AI using the business information it has been given.',
-      'Built for SaaS and service founders and marketing teams.',
+      'Built a conversational engine that combines knowledge retrieval, a typed content catalog, and server-resolved business resources.',
+      'Prototyped and evaluated a typed routing path that uses a structured model for routing and a generative model for grounded copy.',
+      'Preserved the original engine as a traceable fallback for follow-ups, uncertainty, errors, and missing material.',
     ],
   },
   {
