@@ -113,7 +113,7 @@ const imageJobs = [
     output: 'woku-project.webp',
     transform: (image) =>
       image
-        .extract({ left: 0, top: 0, width: 1600, height: 680 })
+        .extract({ left: 150, top: 0, width: 1600, height: 680 })
         .resize(1600, 900, { fit: 'cover', position: 'left top' }),
   },
   {

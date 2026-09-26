@@ -40,8 +40,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       <AnimatedProjectMedia>
         <Image
           className={`h-full w-full object-cover ${
-            project.imagePosition === 'shift-left'
-              ? 'object-[75%_center]'
+            project.imagePosition === 'right'
+              ? 'object-[100%_center]'
               : 'object-center'
           } saturate-[0.88] transition-transform duration-350 ease-[cubic-bezier(0.16,1,0.3,1)]`}
           src={withBasePath(project.image)}
