@@ -56,12 +56,16 @@ describe('canonical portfolio content', () => {
     expect(projects.find((project) => project.slug === 'orvita')).toMatchObject(
       {
         image: '/media/orvita.a.gif',
+        role: 'Founder & CEO',
         metrics: [
           { value: 'USD 7K', label: 'non-dilutive ICHIO funding' },
           { value: 'OPTIMA 2017', label: 'Best Undergraduate Paper' },
         ],
       },
     );
+    expect(
+      projects.find((project) => project.slug === 'wondeya'),
+    ).toMatchObject({ role: 'Co-founder' });
   });
 
   it('contains all skill groups and five El Mercurio Innovation features', () => {
