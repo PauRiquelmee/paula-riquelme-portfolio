@@ -35,6 +35,7 @@ export type Project = {
   imageHeight: number;
   metrics: Metric[];
   highlights: string[];
+  role?: string;
   caseStudy?: ProjectCaseStudy;
 };
 
@@ -341,6 +342,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'wondeya',
+    role: 'Co-founder',
     name: 'Wondeya',
     description: 'Conversational landing pages for SaaS and service teams',
     href: 'https://wondeya.com',
@@ -404,6 +406,7 @@ export const projects: Project[] = [
   {
     slug: 'orvita',
     experienceId: 'orvita',
+    role: 'Founder & CEO',
     name: 'Orvita',
     description: 'Digital tourism venture for personalized route planning',
     image: '/media/orvita.a.gif',
@@ -497,7 +500,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     id: 'orvita',
-    role: 'CEO',
+    role: 'Founder & CEO',
     company: 'Orvita',
     dates: '2018 - 2019',
     responsibilities: [

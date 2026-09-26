@@ -124,7 +124,9 @@ export const renderIndexMarkdown = () => {
       );
       const role = record
         ? `${profile.name}'s documented role was ${record.role} from ${record.dates}. `
-        : '';
+        : project.role
+          ? `${profile.name}'s documented role: ${project.role}. `
+          : '';
       const actions = [
         project.caseStudyPath
           ? `[Read the case study](${absoluteUrl(project.caseStudyPath)})`

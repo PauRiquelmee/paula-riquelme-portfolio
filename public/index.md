@@ -16,7 +16,7 @@ Paula Riquelme's documented role was CEO & Co-founder / Product Lead from Septem
 
 ### Wondeya
 
-Conversational landing pages for SaaS and service teams. [visit the project website](https://wondeya.com).
+Paula Riquelme's documented role: Co-founder. Conversational landing pages for SaaS and service teams. [visit the project website](https://wondeya.com).
 
 
 
@@ -29,7 +29,7 @@ Paula Riquelme's documented role was Co-founder & Brand Artisan, Product Design 
 
 ### Orvita
 
-Paula Riquelme's documented role was CEO from 2018 - 2019. Digital tourism venture for personalized route planning.
+Paula Riquelme's documented role was Founder & CEO from 2018 - 2019. Digital tourism venture for personalized route planning.
 
 - USD 7K: non-dilutive ICHIO funding
 - OPTIMA 2017: Best Undergraduate Paper
@@ -41,7 +41,7 @@ Paula Riquelme's documented role was CEO from 2018 - 2019. Digital tourism ventu
 - CEO & Co-founder | stow SpA | October 2020 - December 2022
 - Maintenance Planning Engineer | Essbio | May 2019 - July 2021
 - Lecturer | Universidad de Concepción | 2023
-- CEO | Orvita | 2018 - 2019
+- Founder & CEO | Orvita | 2018 - 2019
 
 ## Education
 

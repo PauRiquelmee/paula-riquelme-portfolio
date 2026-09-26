@@ -13,6 +13,8 @@ describe('SelectedWork', () => {
     expect(screen.getByRole('heading', { name: 'Wondeya' })).toBeVisible();
     expect(screen.getByRole('heading', { name: 'Inpla' })).toBeVisible();
     expect(screen.getByRole('heading', { name: 'Orvita' })).toBeVisible();
+    expect(screen.getByText('Co-founder')).toBeVisible();
+    expect(screen.getByText('Founder & CEO')).toBeVisible();
     expect(
       screen
         .getAllByRole('heading', { level: 3 })

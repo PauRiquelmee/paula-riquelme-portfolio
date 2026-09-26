@@ -15,6 +15,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         experienceId: project.experienceId,
       })
     : null;
+  const projectRole = project.role ?? projectExperience?.role;
 
   return (
     <article
@@ -26,9 +27,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           <h3 className="font-display text-[3.5rem] font-bold leading-[0.82] tracking-[-0.04em] uppercase md:text-[clamp(3.5rem,7vw,7rem)]">
             {project.name}
           </h3>
-          {projectExperience ? (
+          {projectRole ? (
             <p className="project-role mt-3.5 text-xs font-bold tracking-[0.13em] text-accent uppercase">
-              {projectExperience.role}
+              {projectRole}
             </p>
           ) : null}
         </div>
