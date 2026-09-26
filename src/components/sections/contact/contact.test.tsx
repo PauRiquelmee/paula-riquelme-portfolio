@@ -18,6 +18,9 @@ describe('Contact', () => {
       screen.getByRole('link', { name: /LinkedIn in a new tab/ }),
     ).toHaveAttribute('target', '_blank');
     expect(
+      screen.getByRole('link', { name: 'Open Wondeya in a new tab' }),
+    ).toHaveAttribute('href', 'https://wondeya.com');
+    expect(
       screen.getByRole('link', {
         name: /Download Paula Riquelme's English resume/,
       }),

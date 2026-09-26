@@ -135,6 +135,12 @@ export const contactLinks: LinkItem[] = [
     ariaLabel: 'Open Woku in a new tab',
   },
   {
+    label: 'Wondeya',
+    href: 'https://wondeya.com',
+    external: true,
+    ariaLabel: 'Open Wondeya in a new tab',
+  },
+  {
     label: 'Inpla',
     href: 'https://inpla.ai/en/',
     external: true,
