@@ -21,6 +21,10 @@ describe('generated portfolio content', () => {
     expect(llms).toContain(`# ${site.name}`);
     expect(llms).toContain(profile.roles.join(', '));
     expect(llms).toContain(`${site.origin}work/woku/`);
+    expect(llms).toContain('LangSmith');
+    expect(llms).toContain('OpenAI Platform');
+    expect(llms).toContain('Claude Platform');
+    expect(llms).toContain('TypeSafe AI (Jev)');
     expect(markdown).toContain(experience[0].dates);
     expect(markdown).toContain(projects[2].caseStudyPath);
     expect(markdown).toContain('### Wondeya');

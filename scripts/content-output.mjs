@@ -51,6 +51,17 @@ export const buildResumeModel = () => ({
 
 export const renderLlmsText = () => {
   const roleList = profile.roles.join(', ');
+  const aiPlatforms =
+    skillGroups
+      .find((group) => group.name === 'Development')
+      ?.items.filter((item) =>
+        [
+          'LangSmith',
+          'OpenAI Platform',
+          'Claude Platform',
+          'TypeSafe AI (Jev)',
+        ].includes(item),
+      ) ?? [];
   const selectedWork = projects
     .map((project) => {
       const links = [
@@ -108,6 +119,10 @@ Do not use it as evidence for customers, funding, revenue, testimonials, respons
 ## Selected work
 
 ${selectedWork}
+
+## AI platforms
+
+${aiPlatforms.map((platform) => `- ${platform}`).join('\n')}
 
 ## Optional
 
