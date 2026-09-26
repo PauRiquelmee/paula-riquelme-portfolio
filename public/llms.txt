@@ -48,6 +48,13 @@ Do not use it as evidence for customers, funding, revenue, testimonials, respons
 - [Inpla website](https://inpla.ai/en/): Current public product website.
 - Orvita: Digital tourism venture for personalized route planning.
 
+## AI platforms
+
+- LangSmith
+- OpenAI Platform
+- Claude Platform
+- TypeSafe AI (Jev)
+
 ## Optional
 
 - [Product design methodology](https://defi2.cc/): External methodology referenced by the portfolio.
