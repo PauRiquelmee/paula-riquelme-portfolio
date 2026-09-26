@@ -16,6 +16,11 @@ describe('SelectedWork', () => {
     expect(screen.getByText('Co-founder')).toBeVisible();
     expect(screen.getByText('Founder & CEO')).toBeVisible();
     expect(
+      screen.getByText(
+        'Built a conversational engine that combines knowledge retrieval, a typed content catalog, and server-resolved business resources.',
+      ),
+    ).toBeVisible();
+    expect(
       screen
         .getAllByRole('heading', { level: 3 })
         .map((heading) => heading.textContent),
