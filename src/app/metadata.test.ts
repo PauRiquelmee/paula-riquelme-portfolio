@@ -40,6 +40,7 @@ describe('portfolio metadata', () => {
     expect(sitemap().map((entry) => entry.url)).toEqual([
       'https://pauriquelmee.github.io/',
       'https://pauriquelmee.github.io/work/woku/',
+      'https://pauriquelmee.github.io/work/wondeya/',
       'https://pauriquelmee.github.io/work/inpla/',
       'https://pauriquelmee.github.io/about/',
       'https://pauriquelmee.github.io/contact/',

@@ -24,7 +24,7 @@ describe('generated portfolio content', () => {
     expect(markdown).toContain(projects[2].caseStudyPath);
     expect(markdown).toContain('### Wondeya');
     expect(markdown).toContain('### Orvita');
-    expect(markdown).not.toContain('work/wondeya');
+    expect(markdown).toContain(projects[1].caseStudyPath);
     expect(markdown).not.toContain('work/orvita');
     expect(llms).not.toContain('September 2023 - Present');
     expect(markdown).not.toContain('September 2023 - Present');

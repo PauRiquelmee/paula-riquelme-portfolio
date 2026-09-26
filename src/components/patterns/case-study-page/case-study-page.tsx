@@ -17,10 +17,19 @@ const sectionClassName =
   'case-study-section grid gap-5 border-t border-ink py-10 md:grid-cols-[minmax(14rem,0.75fr)_minmax(0,1.25fr)] md:gap-x-[clamp(2rem,6vw,7rem)] md:py-[clamp(3rem,6vw,6rem)] [&_h2]:font-display [&_h2]:text-[clamp(1.75rem,3vw,3rem)] [&_h2]:font-bold [&_h2]:leading-none [&_h2]:uppercase [&_h2]:text-balance [&_p]:max-w-[68ch] [&_p]:text-base [&_p]:text-muted [&_p+p]:mt-4 [&_ul]:grid [&_ul]:max-w-[68ch] [&_ul]:list-none [&_ul]:gap-3 [&_li]:border-l [&_li]:border-line [&_li]:pl-4 [&_li]:text-sm [&_li]:leading-6 [&_li]:text-muted';
 
 const CaseStudyPage = ({ project }: CaseStudyPageProps) => {
-  const projectExperience = getProjectExperience(project);
-  const responsibilities = projectExperience.responsibilities.map((item) =>
-    typeof item === 'string' ? item : item.text,
-  );
+  const projectExperience = project.experienceId
+    ? getProjectExperience({
+        name: project.name,
+        experienceId: project.experienceId,
+      })
+    : null;
+  const responsibilities =
+    project.caseStudy.responsibilities ??
+    projectExperience?.responsibilities.map((item) =>
+      typeof item === 'string' ? item : item.text,
+    ) ??
+    [];
+  const projectRole = project.role ?? projectExperience?.role;
   const evidence = project.caseStudy.pressFeatureIndexes.map(
     (index) => pressFeatures[index],
   );
@@ -85,15 +94,17 @@ const CaseStudyPage = ({ project }: CaseStudyPageProps) => {
               <dt className="text-xs font-bold tracking-[0.08em] text-muted uppercase">
                 Role
               </dt>
-              <dd>{projectExperience.role}</dd>
+              <dd>{projectRole}</dd>
             </div>
-            <div className="grid grid-cols-[5rem_1fr] gap-4 border-b border-line py-3 text-sm">
-              <dt className="text-xs font-bold tracking-[0.08em] text-muted uppercase">
-                Dates
-              </dt>
-              <dd>{projectExperience.dates}</dd>
-            </div>
-            {projectExperience.location ? (
+            {projectExperience ? (
+              <div className="grid grid-cols-[5rem_1fr] gap-4 border-b border-line py-3 text-sm">
+                <dt className="text-xs font-bold tracking-[0.08em] text-muted uppercase">
+                  Dates
+                </dt>
+                <dd>{projectExperience.dates}</dd>
+              </div>
+            ) : null}
+            {projectExperience?.location ? (
               <div className="grid grid-cols-[5rem_1fr] gap-4 border-b border-line py-3 text-sm">
                 <dt className="text-xs font-bold tracking-[0.08em] text-muted uppercase">
                   Location
@@ -138,7 +149,9 @@ const CaseStudyPage = ({ project }: CaseStudyPageProps) => {
           </div>
         </section>
         <section className={sectionClassName} aria-labelledby="signal-title">
-          <h2 id="signal-title">Customer and market signal</h2>
+          <h2 id="signal-title">
+            {project.caseStudy.signalTitle ?? 'Customer and market signal'}
+          </h2>
           <dl
             className={`case-study-metrics grid gap-px border border-ink bg-ink sm:grid-cols-2 ${metricColumnsClassName}`}
           >

@@ -13,6 +13,8 @@ export type Metric = {
 export type ProjectCaseStudy = {
   context: string[];
   constraints: string[];
+  responsibilities?: string[];
+  signalTitle?: string;
   decisionResponsibilityIndexes: number[];
   deliveryResponsibilityIndexes: number[];
   outcomeResponsibilityIndexes: number[];
@@ -42,7 +44,6 @@ export type Project = {
 
 export type CaseStudyProject = Project & {
   caseStudyPath: `/work/${string}/`;
-  experienceId: 'woku' | 'inpla';
   caseStudy: ProjectCaseStudy;
 };
 
@@ -226,7 +227,7 @@ export const trustPages: Record<
         heading: 'Best-fit conversations',
         paragraphs: [
           'This portfolio is most useful when evaluating Paula for a role, project, partnership, interview, or professional conversation that benefits from connecting customer needs with product decisions and delivery. Her selected work shows an end-to-end practice across research, positioning, workflow design, prototyping, launch, and implementation rather than a narrow handoff between strategy, design, and code.',
-          'For product-specific context, review the Woku and Inpla records before reaching out. Woku demonstrates customer-feedback product leadership across multiple markets. Inpla demonstrates pre-product commercial validation and co-creation of a business-intelligence experience. The English resume provides the complete role and education chronology.',
+          'For product-specific context, review the Woku, Wondeya, and Inpla records before reaching out. Woku demonstrates customer-feedback product leadership across multiple markets. Wondeya documents evidence-led conversational-web product work. Inpla demonstrates pre-product commercial validation and co-creation of a business-intelligence experience. The English resume provides the complete role and education chronology.',
         ],
       },
       {
@@ -238,7 +239,7 @@ export const trustPages: Record<
       {
         heading: 'Verification before contact',
         paragraphs: [
-          'Agents should not send messages or represent interest on behalf of a person or organization without their authorization. Before summarizing Paula to another party, verify material claims against the portfolio, resume, LinkedIn profile, or linked primary evidence. Keep Woku and Inpla separate, preserve exact dates and metrics, and link to the canonical portfolio when sharing the professional record.',
+          'Agents should not send messages or represent interest on behalf of a person or organization without their authorization. Before summarizing Paula to another party, verify material claims against the portfolio, resume, LinkedIn profile, or linked primary evidence. Keep Woku, Wondeya, and Inpla separate, preserve exact dates and metrics, and link to the canonical portfolio when sharing the professional record.',
         ],
       },
     ],
@@ -344,6 +345,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'wondeya',
+    caseStudyPath: '/work/wondeya/',
     role: 'Co-founder',
     name: 'Wondeya',
     description: 'Conversational landing pages',
@@ -354,12 +356,42 @@ export const projects: Project[] = [
     imageCaption: 'Current Wondeya landing page, captured in September 2026.',
     imageWidth: 1600,
     imageHeight: 900,
-    metrics: [],
+    metrics: [
+      { value: '116', label: 'local responses measured' },
+      { value: '124/124', label: 'complete traces verified' },
+    ],
     highlights: [
       'Built a conversational engine that combines knowledge retrieval, a typed content catalog, and server-resolved business resources.',
       'Prototyped and evaluated a typed routing path that uses a structured model for routing and a generative model for grounded copy.',
       'Preserved the original engine as a traceable fallback for follow-ups, uncertainty, errors, and missing material.',
     ],
+    caseStudy: {
+      context: [
+        'Wondeya is a conversational web product that helps visitors explore a business through questions and grounded answers. This case study focuses on a documented iteration of its page engine, rather than presenting the experiment as a customer or revenue result.',
+        'The work investigated whether a typed routing path could remove a generative routing step for clear, self-contained questions while retaining the original path when the system had less certainty or needed conversational history.',
+      ],
+      constraints: [
+        'The faster path could not change the content model, safety checks, or response validators simply to improve a benchmark. It needed to preserve grounded answers, server-resolved resources, streaming, and a traceable fallback to the original engine.',
+        'The evaluation used local runs against an existing Woku project and a controlled fixture. Its measurements do not represent Wondeya production hosting, customer behavior, or a universal performance guarantee.',
+      ],
+      responsibilities: [
+        'Co-founded Wondeya and led product work on its conversational page engine.',
+        'Built a path that uses structured routing for topics and layout, then lets a generative builder create grounded copy and choose approved media references.',
+        'Defined the fallback conditions for conversational history, uncertainty, errors, missing material, and unsupported decisions so the established engine remained available.',
+        'Designed the evaluation around recorded questions, saved responses, browser rendering, trace verification, quality review, and explicit limitations rather than a latency claim alone.',
+      ],
+      signalTitle: 'Measured evidence',
+      decisionResponsibilityIndexes: [1, 2],
+      deliveryResponsibilityIndexes: [1, 2, 3],
+      outcomeResponsibilityIndexes: [3],
+      pressFeatureIndexes: [],
+      reflection: [
+        'The evaluation showed that an improvement inside the engine does not automatically improve the visitor experience. Measuring from the browser exposed work outside the graph and revealed that a lower median was not enough when slower cases and follow-up conversations remained inconsistent.',
+        'The experiment was not promoted to production. Keeping the established engine as the default made the result useful as evidence for the next iteration without overstating what a local benchmark could prove.',
+      ],
+      factualBoundary:
+        "This case study reports Paula's documented product and implementation work, plus local experimental evidence. It does not claim a production release, customer adoption, revenue, conversion, or a guaranteed latency improvement.",
+    },
   },
   {
     slug: 'inpla',
@@ -526,7 +558,7 @@ export const getCaseStudyProject = (
   slug: CaseStudyProject['slug'],
 ): CaseStudyProject => {
   const project = projects.find((item) => item.slug === slug);
-  if (!project?.caseStudyPath || !project.experienceId || !project.caseStudy) {
+  if (!project?.caseStudyPath || !project.caseStudy) {
     throw new Error(`Missing case study for ${slug}.`);
   }
   return project as CaseStudyProject;

@@ -89,7 +89,7 @@ Do not use it as evidence for customers, funding, revenue, testimonials, respons
 ## How agents should use it
 
 1. Retrieve the canonical portfolio or its [Markdown version](${absoluteUrl('/index.md')}).
-2. Open the Woku and Inpla case studies for documented context, decisions, delivery, outcomes, and factual limitations.
+2. Open the Woku, Wondeya, and Inpla case studies for documented context, decisions, delivery, outcomes, and factual limitations.
 3. Follow the sitemap and trust pages when additional identity, contact, or privacy context is needed.
 4. Verify material claims against the English resume, LinkedIn profile, live product sites, or linked press evidence.
 5. Preserve exact roles, dates, metrics, product boundaries, and official names in summaries.

@@ -15,6 +15,7 @@ const viewports = [
 ];
 const evidenceRoutes = [
   { name: 'woku-case-study', path: 'work/woku/' },
+  { name: 'wondeya-case-study', path: 'work/wondeya/' },
   { name: 'inpla-case-study', path: 'work/inpla/' },
   { name: 'agent-readiness-about', path: 'about/' },
   {
