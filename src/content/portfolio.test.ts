@@ -81,6 +81,16 @@ describe('canonical portfolio content', () => {
       'Design',
       'Development',
     ]);
+    expect(
+      skillGroups.find((group) => group.name === 'Development')?.items,
+    ).toEqual(
+      expect.arrayContaining([
+        'LangSmith',
+        'OpenAI Platform',
+        'Claude Platform',
+        'TypeSafe AI (Jev)',
+      ]),
+    );
     expect(pressFeatures).toHaveLength(5);
   });
 
